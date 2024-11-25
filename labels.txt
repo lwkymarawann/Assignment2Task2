@@ -1,0 +1,25 @@
+Sign vs Cosine Functions.
+Sigmoid Function.
+Exponential Growth and Decay.
+Logarithmic Scale Visualization.
+Parabola Graph Representation.
+Linear Regression Line.
+Scatter Plot of Data Points.
+Histogram of Frequency Distribution.
+Box Plot for Statistical Analysis.
+Heatmap of Correlation Coefficients.
+Probability Density Function.
+Comparison of Algorithms.
+Steps of Gradient Descent.
+Activation Functions in Neural Networks.
+Training Loss Over Epochs.
+Confusion Matrix Representation.
+ROC Curve for Model Performance.
+Precision vs Recall Graph.
+Visualization of Clustering.
+Decision Tree Diagram.
+Time Series Analysis.
+Moving Average Plot.
+Fourier Transform Visualization.
+Spectrogram of Audio Signals.
+Flowchart of Program Logic.
