@@ -83,10 +83,10 @@ void X_O_Board<T>::display_board() {
 }
 
 // Returns true if there is any winner
-int k = -1 ;bool t = false;
+int k = -1,m,n ;bool l = false;
 template <typename T>
 bool X_O_Board<T>::is_win() {
-    if (this->n_moves == k && t){
+    if (this->n_moves == k ){
         return true;
     }
     // Check rows and columns
@@ -94,7 +94,16 @@ bool X_O_Board<T>::is_win() {
         if ((this->board[i][0] == this->board[i][1] && this->board[i][1] == this->board[i][2] && this->board[i][0] != 0) ||
             (this->board[0][i] == this->board[1][i] && this->board[1][i] == this->board[2][i] && this->board[0][i] != 0)) {
             k = this->n_moves + 1;
-            t = true;
+            l = true;
+
+        }
+        else if(this->board[i][0] == 0){
+            m = i;
+            n = 0;
+        }
+        else if (this->board[0][i] == 0){
+            m = 0;
+            n = i;
         }
     }
 
@@ -102,7 +111,15 @@ bool X_O_Board<T>::is_win() {
     if ((this->board[0][0] == this->board[1][1] && this->board[1][1] == this->board[2][2] && this->board[0][0] != 0) ||
         (this->board[0][2] == this->board[1][1] && this->board[1][1] == this->board[2][0] && this->board[0][2] != 0)) {
         k = this->n_moves + 1;
-        t = true;
+        l = true;
+    }
+    else if (this->board[0][0] == 0){
+        m = 0;
+        n = 0;
+    }
+    else if (this->board[0][2] == 0){
+        m = 0;
+        n = 2;
     }
 
     return false;
@@ -127,6 +144,11 @@ X_O_Player<T>::X_O_Player(string name, T symbol) : Player<T>(name, symbol) {}
 
 template <typename T>
 void X_O_Player<T>::getmove(int& x, int& y) {
+    if (l){
+        x = m;
+        y = n;
+        return;
+    }
     cout << "\nPlease enter your move x and y (0 to 2) separated by spaces: ";
     cin >> x >> y;
 }
@@ -145,4 +167,4 @@ void X_O_Random_Player<T>::getmove(int& x, int& y) {
     y = rand() % this->dimension;
 }
 #endif  
-// 0 0 1 1 2 2 0 2 2 0 2 1 0 1 1 0 1 2
+// 1 1 2 1 0 0 1 1 2 2 0 2 2 0 2 1 0 1 1 0 1 2

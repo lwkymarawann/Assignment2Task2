@@ -12,7 +12,6 @@ public:
     bool is_win() ;
     bool is_draw();
     bool game_is_over();
-
 };
 
 template <typename T>
@@ -41,7 +40,7 @@ public:
 #include <cctype>  // for toupper()
 
 using namespace std;
-
+bool l = false ;
 // Constructor for X_O_Board
 template <typename T>
 X_O_Board<T>::X_O_Board() {
@@ -87,7 +86,8 @@ void X_O_Board<T>::display_board() {
 }
 
 // Returns true if there is any winner
-int p1, p2;
+int p1, p2,m,n ;
+
 template <typename T>
 bool X_O_Board<T>::is_win() {
     if (this->n_moves == 25 && p1 > p2 ) {// Player 1 wins
@@ -140,8 +140,13 @@ bool X_O_Board<T>::is_win() {
                         p2++;
                     }
                 }
+                else if (this->board[i][j] == 0){
+                    m = i;
+                    n = j;
+                }
             }
         }
+        l = true;
     }
     if ( this->n_moves == 24 && p2 > p1){
         return true; // Player 2 wins
@@ -167,6 +172,11 @@ X_O_Player<T>::X_O_Player(string name, T symbol) : Player<T>(name, symbol) {}
 
 template <typename T>
 void X_O_Player<T>::getmove(int& x, int& y) {
+    if (l){
+        x = m;
+        y = n;
+        return;
+    }
     cout << "\nPlease enter your move x and y (0 to 4) separated by spaces: ";
     cin >> x >> y;
 }
@@ -186,4 +196,5 @@ void X_O_Random_Player<T>::getmove(int& x, int& y) {
 }
 #endif
 
-
+////1 1 2 1 0 0 0 3 0 1 0 4 0 2 4 0 1 0 3 0 2 0 4 4 1 1 3 3 2 2 4 1 2 1 4 2 2 4 1 3 3 1 1 2 2 3 4 3 3 2 3 4
+////1 1 2 1 0 1 0 0 0 3 0 2 1 0 1 1 1 4 1 2 2 1 1 3 2 2 2 0 2 3 2 4 3 0 3 1 3 2 3 3 3 4 4 0 4 1 4 2 4 3 0 4
