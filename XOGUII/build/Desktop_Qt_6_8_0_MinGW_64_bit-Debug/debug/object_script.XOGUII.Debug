@@ -1,0 +1,10 @@
+debug/game.o
+debug/gamechoice.o
+debug/main.o
+debug/mainwindow.o
+debug/xo.o
+debug/qrc_resource.o
+debug/moc_game.o
+debug/moc_gamechoice.o
+debug/moc_mainwindow.o
+debug/moc_xo.o

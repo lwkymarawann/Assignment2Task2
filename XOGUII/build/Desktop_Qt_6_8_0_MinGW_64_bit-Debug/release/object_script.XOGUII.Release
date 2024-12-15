@@ -1,0 +1,10 @@
+release/game.o
+release/gamechoice.o
+release/main.o
+release/mainwindow.o
+release/xo.o
+release/qrc_resource.o
+release/moc_game.o
+release/moc_gamechoice.o
+release/moc_mainwindow.o
+release/moc_xo.o
