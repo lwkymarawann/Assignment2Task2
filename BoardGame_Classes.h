@@ -14,6 +14,7 @@ protected:
 
 public:
 
+    virtual ~Board() {}
 
     /// Return true if move is valid and put it on the board
     /// within board boundaries in an empty cell
@@ -31,6 +32,7 @@ public:
 
     /// Return true if the game is over
     virtual bool game_is_over() = 0;
+
 };
 
 template <typename T>
@@ -153,25 +155,6 @@ template <typename T>
 void Player<T>::setBoard(Board<T>* b) {
     this->boardPtr = b;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif //_BOARDGAME_CLASSES_H
 
