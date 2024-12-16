@@ -12,7 +12,7 @@ public:
     void getmove(int& x, int& y) override;
 
 private:
-    int calculateMinMax(T s, bool isMaximizing);
+    int calculateMinMax(T s, bool isMaximizing );
     std::pair<int, int> getBestMove();
 };
 
@@ -45,7 +45,7 @@ void X_O_MinMax_Player<T>::getmove(int& x, int& y) {
 template <typename T>
 int X_O_MinMax_Player<T>::calculateMinMax(T s, bool isMaximizing) {
     if (this->boardPtr->is_win()) {
-        return isMaximizing ? -1 : 1;
+        return isMaximizing ? 1 : -1;
     } else if (this->boardPtr->is_draw()) {
         return 0;
     }
@@ -67,20 +67,19 @@ int X_O_MinMax_Player<T>::calculateMinMax(T s, bool isMaximizing) {
             }
         }
     }
-
     return bestValue;
 }
 
 // Find the best move using the minimax algorithm
 template <typename T>
 std::pair<int, int> X_O_MinMax_Player<T>::getBestMove() {
-    int bestValue = std::numeric_limits<int>::min();
+    float bestValue = std::numeric_limits<float>::min();
     std::pair<int, int> bestMove = {-1, -1};
     T opponentSymbol = (this->symbol == 'X') ? 'O' : 'X';
 
     // First, check if we can win in the next move
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
+    for (int i = 0; i < 6; ++i) {
+        for (int j = 0; j < 7; ++j) {
             if (this->boardPtr->update_board(i, j, this->symbol)) {
                 if (this->boardPtr->is_win()) {
                     this->boardPtr->update_board(i, j, 0); // Undo move
@@ -92,8 +91,8 @@ std::pair<int, int> X_O_MinMax_Player<T>::getBestMove() {
     }
 
     // Second, check if the opponent can win in their next move and block them
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
+    for (int i = 0; i < 6; ++i) {
+        for (int j = 0; j < 7; ++j) {
             if (this->boardPtr->update_board(i, j, opponentSymbol)) {
                 if (this->boardPtr->is_win()) {
                     this->boardPtr->update_board(i, j, 0); // Undo move
@@ -105,15 +104,14 @@ std::pair<int, int> X_O_MinMax_Player<T>::getBestMove() {
     }
 
     // If no immediate win or block, use MinMax to find the best move
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
+    for (int i = 0; i < 6; ++i) {
+        for (int j = 0; j < 7; ++j) {
             if (this->boardPtr->update_board(i, j, this->symbol)) {
-                int moveValue = calculateMinMax(this->symbol, false);
+                int moveValue = calculateMinMax(this->symbol, true);
                 this->boardPtr->update_board(i, j, 0); // Undo move
-
-                if (moveValue > bestValue) {
-                    bestMove = {i, j};
+                if (moveValue <= bestValue) {
                     bestValue = moveValue;
+                    bestMove = {i, j};
                 }
             }
         }
