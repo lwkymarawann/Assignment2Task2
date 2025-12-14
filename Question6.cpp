@@ -104,7 +104,6 @@ bool checkDraw(char *board){
     cout << "IT'S A DRAW" << endl;
         return true;
 }
-
 int main()
 {
     // Decleration of variables
